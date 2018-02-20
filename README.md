@@ -1,2 +1,3 @@
-# RyaDiscordCsgoRpc
-Discord rich pressence state for csgo
+# RyaRpc
+Discord rich pressence state for games that do not support it themself.
+
