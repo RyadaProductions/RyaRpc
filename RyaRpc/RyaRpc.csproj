@@ -82,7 +82,6 @@
     <Compile Include="Games\ProcessNames.cs" />
     <Compile Include="Games\Csgo\CsgoConfig.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
-    <Compile Include="Games\IConfigHandler.cs" />
     <Compile Include="Handlers\GameDetector.cs" />
     <Compile Include="Games\Csgo\CsgoState.cs" />
     <Compile Include="ViewModels\TitleBarViewModel.cs" />

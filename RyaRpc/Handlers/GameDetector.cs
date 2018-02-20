@@ -2,19 +2,26 @@
 using System.Management;
 using RyaRpc.Games;
 using RyaRpc.Games.Csgo;
+using Stylet;
 
 namespace RyaRpc.Handlers
 {
     /// <summary>
     /// Detects if csgo starts and watches started/closed processes to see if it is csgo
     /// </summary>
-    public class GameDetector : IDisposable
+    public class GameDetector : PropertyChangedBase, IDisposable
     {
+        private bool _isGameRunning;
+
         /// <summary>
         /// True = a game is currently running,
         /// False = no game is currently running
         /// </summary>
-        public bool IsGameRunning { get; private set; }
+        public bool IsGameRunning
+        {
+            get => _isGameRunning;
+            private set => SetAndNotify(ref _isGameRunning, value, nameof(IsGameRunning));
+        }
 
         private readonly ManagementEventWatcher _processStartWatcher;
         private readonly ManagementEventWatcher _processStopWatcher;
@@ -27,9 +34,9 @@ namespace RyaRpc.Handlers
         /// <summary>
         /// Watches if applications start/close and changes the current rpc state based upon that
         /// </summary>
-        public GameDetector()
+        public GameDetector(RpcController rpcController)
         {
-            _rpcController = new RpcController();
+            _rpcController = rpcController;
             _rpcController.Initialize();
 
             _processStartWatcher = new ManagementEventWatcher(

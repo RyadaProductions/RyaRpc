@@ -7,7 +7,7 @@ using Microsoft.Win32;
 
 namespace RyaRpc.Games.Csgo
 {
-    public class CsgoConfig : IConfigHandler
+    public class CsgoConfig
     {
         /// <summary>
         /// Add the cfg file to enable Gamestates to the csgo folder
