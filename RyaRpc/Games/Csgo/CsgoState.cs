@@ -6,7 +6,7 @@ using Stylet;
 
 namespace RyaRpc.Games.Csgo
 {
-    public class CsgoState : PropertyChangedBase, IGameState, IDisposable
+    public class CsgoState : PropertyChangedBase, IGameState
     {
         private readonly GameStateListener _gamestateListener;
         private RichPresence _presence;
@@ -111,7 +111,7 @@ namespace RyaRpc.Games.Csgo
                 case MapMode.GunGameProgressive:
                     return $"Weapon: {gameState.Player.Weapons.ActiveWeapon}";
                 case MapMode.CoopMission:
-                    return $"Friends are important";
+                    return "Friends are important";
                 case MapMode.Custom:
                     return "Unknown stats";
                 default:
