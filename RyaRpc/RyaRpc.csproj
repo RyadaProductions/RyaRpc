@@ -77,6 +77,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Discord-RPC\RpcClient.cs" />
     <Compile Include="Discord-RPC\RpcController.cs" />
+    <Compile Include="Extensions\BoolToStringConverter.cs" />
     <Compile Include="Games\IGameState.cs" />
     <Compile Include="Games\ProcessNames.cs" />
     <Compile Include="Games\Csgo\CsgoConfig.cs" />

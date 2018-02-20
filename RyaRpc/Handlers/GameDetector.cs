@@ -14,12 +14,7 @@ namespace RyaRpc.Handlers
         /// True = a game is currently running,
         /// False = no game is currently running
         /// </summary>
-        public bool IsGameRunning { get; set; }
-
-        /// <summary>
-        /// string that represents the current state of the application
-        /// </summary>
-        public string CurrentAppState => IsGameRunning ? $"{_currentGame} is running" : "Waiting for a game to start";
+        public bool IsGameRunning { get; private set; }
 
         private readonly ManagementEventWatcher _processStartWatcher;
         private readonly ManagementEventWatcher _processStopWatcher;
