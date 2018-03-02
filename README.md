@@ -4,6 +4,10 @@ Discord rich pressence state for games that do not support it themself.
 ### Currently supported games:
 * Counter-Strike: Global Offensive
 
+### Current major issues:
+- Discord does not allow us to upload images realtime so they have to be uploaded prematurely.
+- Discord does not allow us to change the name of the Game from the application.
+
 ## Installation
 
 TODO: Describe the installation process
