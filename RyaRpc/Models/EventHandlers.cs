@@ -19,20 +19,5 @@
         /// Fires when there is an error in the DiscordRpc
         /// </summary>
         public RpcClient.ErrorCallback ErrorCallback { get; set; }
-
-        /// <summary>
-        /// Fires when somebody allows you to join their game
-        /// </summary>
-        public RpcClient.JoinCallback JoinCallback { get; set; }
-
-        /// <summary>
-        /// Fires when you click the spectate button
-        /// </summary>
-        public RpcClient.SpectateCallback SpectateCallback { get; set; }
-        
-        /// <summary>
-        /// Fires when somebody requests to join your game
-        /// </summary>
-        public RpcClient.RequestCallback RequestCallback { get; set; }
     }
 }

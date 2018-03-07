@@ -35,21 +35,13 @@ namespace RyaRpc
         /// </summary>
         /// <param name="presence">reference to an instance of RichPresence</param>
         [DllImport("discord-rpc", EntryPoint = "Discord_UpdatePresence", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdatePresence(ref RichPresence presence);
+        public static extern void UpdatePresence(ref RichPresence.InnerPresence presence);
 
         /// <summary>
         /// Clears the current game presence
         /// </summary>
         [DllImport("discord-rpc", EntryPoint = "Discord_ClearPresence", CallingConvention = CallingConvention.Cdecl)]
         public static extern void ClearPresence();
-
-        /// <summary>
-        /// Rely to a join request
-        /// </summary>
-        /// <param name="userId">userid of the person you received the request from</param>
-        /// <param name="reply">reply you send to discord</param>
-        [DllImport("discord-rpc", EntryPoint = "Discord_Respond", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Respond(string userId, Reply reply);
 
         /// <summary>
         /// Fires when the client is ready
@@ -72,27 +64,6 @@ namespace RyaRpc
         /// <param name="message">Message containing the error message</param>
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ErrorCallback(int errorCode, string message);
-
-        /// <summary>
-        /// Fires when you join somebody through discord
-        /// </summary>
-        /// <param name="secret">the secret of their Rpc</param>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void JoinCallback(string secret);
-
-        /// <summary>
-        /// Fires when you click the spectate button
-        /// </summary>
-        /// <param name="secret">their secret spectate link</param>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void SpectateCallback(string secret);
-
-        /// <summary>
-        /// Fires when somebody requests to join your game
-        /// </summary>
-        /// <param name="request">the Joinrequest that you received</param>
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void RequestCallback(JoinRequest request);
         
         /// <summary>
         /// Possible responses from the JoinRequest

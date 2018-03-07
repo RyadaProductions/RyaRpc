@@ -14,22 +14,17 @@ namespace RyaRpc
         /// </summary>
         public string ApplicationId => "410440067530752000";
 
-        /// <summary>
-        /// Optional steam app id
-        /// </summary>
-        public string OptionalSteamId { get; set; }
-
         private EventHandlers _handlers;
 
         /// <summary>
         /// Initializes Discord RPC
         /// </summary>
-        public void Initialize()
+        public RpcController()
         {
             _handlers = new EventHandlers { ReadyCallback = ClientIsReady };
             _handlers.DisconnectedCallback += ClientHasDisconnected;
             _handlers.ErrorCallback += ClientErrorOccured;
-            RpcClient.Initialize(ApplicationId, ref _handlers, true, OptionalSteamId);
+            RpcClient.Initialize(ApplicationId, ref _handlers, true, "");
         }
 
         /// <summary>

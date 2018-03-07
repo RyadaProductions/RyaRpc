@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
+using Serilog;
 
 namespace RyaRpc.Games.Csgo
 {
@@ -12,12 +13,20 @@ namespace RyaRpc.Games.Csgo
         /// <summary>
         /// Add the cfg file to enable Gamestates to the csgo folder
         /// </summary>
-        public void AddConfig()
+        public static void SaveToGameFolder()
         {
+            Log.Information("Adding gamestate_integration_rpc.cfg to the csgo folder.");
             var steamPath = GetSteamPath();
             var steamLibraries = GetSteamLibraries(steamPath);
             var csFolder = GetCsgoPath(steamLibraries);
 
+            if (string.IsNullOrEmpty(csFolder))
+            {
+                Log.Error("Csgo could not been found on this computer.");
+                return;
+            }
+
+            Log.Information($"Csgo has been found in: {csFolder}.");
             var originalFile = Path.Combine(Environment.CurrentDirectory, "ConfigFile", "gamestate_integration_rpc.cfg");
             var destinationFile = Path.Combine(csFolder, "csgo", "cfg", "gamestate_integration_rpc.cfg");
 
@@ -26,6 +35,7 @@ namespace RyaRpc.Games.Csgo
             {
                 origin.CopyTo(destination);
             }
+            Log.Information("Added the config to csgo succesfully.");
         }
 
         /// <summary>
@@ -53,10 +63,9 @@ namespace RyaRpc.Games.Csgo
 
             foreach (var line in File.ReadAllLines(configFile))
             {
-                if (regex.IsMatch(line))
-                {
-                    folders.Add(Regex.Unescape(line));
-                }
+                if (!regex.IsMatch(line)) continue;
+
+                folders.Add(Regex.Unescape(line));
             }
 
             return folders;

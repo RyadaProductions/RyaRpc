@@ -2,6 +2,7 @@
 using System.Management;
 using RyaRpc.Games;
 using RyaRpc.Games.Csgo;
+using Serilog;
 using Stylet;
 
 namespace RyaRpc.Handlers
@@ -11,8 +12,14 @@ namespace RyaRpc.Handlers
     /// </summary>
     public class GameDetector : PropertyChangedBase, IDisposable
     {
-        private bool _isGameRunning;
+        private readonly ManagementEventWatcher _processStartWatcher;
+        private readonly ManagementEventWatcher _processStopWatcher;
 
+        private RpcController _rpcController;
+
+        private string _currentGame;
+        
+        private bool _isGameRunning;
         /// <summary>
         /// True = a game is currently running,
         /// False = no game is currently running
@@ -20,24 +27,27 @@ namespace RyaRpc.Handlers
         public bool IsGameRunning
         {
             get => _isGameRunning;
-            private set => SetAndNotify(ref _isGameRunning, value, nameof(IsGameRunning));
+            private set => SetAndNotify(ref _isGameRunning, value);
         }
 
-        private readonly ManagementEventWatcher _processStartWatcher;
-        private readonly ManagementEventWatcher _processStopWatcher;
-
-        private RpcController _rpcController;
-
-        private string _currentGame;
-        public IGameState CurrentStateHandler { get; set; }
+        private IGameState _currentStateHandler;
+        /// <summary>
+        /// Represents the current game its statehandler.
+        /// </summary>
+        public IGameState CurrentStateHandler
+        {
+            get => _currentStateHandler;
+            private set => SetAndNotify(ref _currentStateHandler, value);
+        }
 
         /// <summary>
         /// Watches if applications start/close and changes the current rpc state based upon that
         /// </summary>
         public GameDetector(RpcController rpcController)
         {
+            Log.Information("Starting the GameDetector.");
+
             _rpcController = rpcController;
-            _rpcController.Initialize();
 
             _processStartWatcher = new ManagementEventWatcher(
                 new WqlEventQuery("SELECT * FROM Win32_ProcessStartTrace"));
@@ -46,6 +56,8 @@ namespace RyaRpc.Handlers
             _processStopWatcher = new ManagementEventWatcher(
                 new WqlEventQuery("SELECT * FROM Win32_ProcessStopTrace"));
             _processStopWatcher.EventArrived += ProcessStopped;
+
+            Log.Information("GameDetector has been started.");
         }
 
         /// <summary>
@@ -90,12 +102,16 @@ namespace RyaRpc.Handlers
 
             // If the stopped process is not the same as the game then do not continue
             if (e.NewEvent.Properties["ProcessName"].Value as string != _currentGame) return;
+            Log.Information("Game has been closed stop the current GameStateHandler and clear the RichPresence.");
 
             _currentGame = string.Empty;
             CurrentStateHandler.Dispose();
             CurrentStateHandler = null;
+            // Clear the presence since no game is currently being played.
+            // There might be a delay in this but that is just internally with Discord and not an issue i can solve in the code
             RpcClient.ClearPresence();
             IsGameRunning = false;
+            Log.Information("Current GameStateHandler has been stopped and RichPresence has been cleared.");
         }
 
         /// <inheritdoc />
