@@ -31,6 +31,7 @@ TODO: Describe the installation process
 * [Stylet](https://github.com/canton7/Stylet) - MVVM framework
 * [Serilog](https://github.com/serilog/serilog) - logging framework
 * [CSGSI](https://github.com/rakijah/CSGSI) - Gamestate listener and parser for csgo
+* [PropertyChangedAlanyzers](https://github.com/DotNetAnalyzers/PropertyChangedAnalyzers) - Analyzer that helps with INPC
 
 ## Authors
 
