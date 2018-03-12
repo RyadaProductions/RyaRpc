@@ -114,18 +114,27 @@ namespace RyaRpc.Handlers
             Log.Information("Current GameStateHandler has been stopped and RichPresence has been cleared.");
         }
 
+        /// <summary>
+        /// Tells us if the instance has already been disposed or not
+        /// </summary>
+        private bool _disposed;
+
         /// <inheritdoc />
         /// <summary>
         /// Stop both watchers when disposing of this object.
         /// </summary>
         public void Dispose()
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(GameDetector));
+
             _processStartWatcher.Stop();
             _processStopWatcher.Stop();
             CurrentStateHandler.Dispose();
             CurrentStateHandler = null;
             _rpcController.Dispose();
             _rpcController = null;
+
+            _disposed = true;
         }
     }
 }

@@ -35,7 +35,7 @@ namespace RyaRpc
         /// </summary>
         /// <param name="presence">reference to an instance of RichPresence</param>
         [DllImport("discord-rpc", EntryPoint = "Discord_UpdatePresence", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void UpdatePresence(ref RichPresence.InnerPresence presence);
+        public static extern void UpdatePresence(ref RichPresenceStruct presence);
 
         /// <summary>
         /// Clears the current game presence

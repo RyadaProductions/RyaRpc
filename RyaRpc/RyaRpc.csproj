@@ -86,6 +86,7 @@
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Handlers\GameDetector.cs" />
     <Compile Include="Games\Csgo\CsgoState.cs" />
+    <Compile Include="Models\RichPresenceStruct.cs" />
     <Compile Include="ViewModels\TitleBarViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

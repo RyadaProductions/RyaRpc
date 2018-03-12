@@ -8,57 +8,13 @@ namespace RyaRpc.Models
     /// Do not fill properties with data if you do not want to use that in the RPC on discord.
     /// </summary>
     [SuppressMessage("PropertyChangedAnalyzers.PropertyChanged", "INPC003:Notify when property changes.", Justification = "We do not want to notify when Struct changes")]
-    public class RichPresence : PropertyChangedBase
+    public sealed class RichPresence : PropertyChangedBase
     {
-        /// <summary>
-        /// Model for a richpresence struct that needs to be passed into the DllImport
-        /// </summary>
-        public struct InnerPresence
-        {
-            public InnerPresence(
-                string state, string details, long startTimestamp, long endTimestamp, string largeImageKey,
-                string largeImageText, string smallImageKey, string smallImageText, string partyId, int partySize,
-                int partyMax, string matchSecret, string joinSecret, string spectateSecret, bool instance)
-            {
-                State = state;
-                Details = details;
-                StartTimestamp = startTimestamp;
-                EndTimestamp = endTimestamp;
-                LargeImageKey = largeImageKey;
-                LargeImageText = largeImageText;
-                SmallImageKey = smallImageKey;
-                SmallImageText = smallImageText;
-                PartyId = partyId;
-                PartySize = partySize;
-                PartyMax = partyMax;
-                MatchSecret = matchSecret;
-                JoinSecret = joinSecret;
-                SpectateSecret = spectateSecret;
-                Instance = instance;
-            }
-
-            public string State { get; }
-            public string Details { get; }
-            public long StartTimestamp { get; }
-            public long EndTimestamp { get; }
-            public string LargeImageKey { get; }
-            public string LargeImageText { get; }
-            public string SmallImageKey { get; }
-            public string SmallImageText { get; }
-            public string PartyId { get; }
-            public int PartySize { get; }
-            public int PartyMax { get; }
-            public string MatchSecret { get; }
-            public string JoinSecret { get; }
-            public string SpectateSecret { get; }
-            public bool Instance { get; }
-        }
-
         /// <summary>
         /// Each time we need the struct we will generate a new one. This preserves the immutability and the GC can clean up old ones since there will not be a reference anymore.
         /// </summary>
-        public InnerPresence Struct => new InnerPresence(_state, _details, _startTimestamp, _endTimestamp, _largeImageKey, _largeImageText, _smallImageKey, _smallImageText, _partyId, _partySize, _partyMax, _matchSecret, _joinSecret, _spectateSecret, _instance);
-        
+        public RichPresenceStruct Struct => new RichPresenceStruct(_state, _details, _startTimestamp, _endTimestamp, _largeImageKey, _largeImageText, _smallImageKey, _smallImageText, _partyId, _partySize, _partyMax, _matchSecret, _joinSecret, _spectateSecret, _instance);
+
         private string _state;
         private string _details;
         private long _startTimestamp;
