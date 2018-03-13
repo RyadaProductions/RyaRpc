@@ -18,7 +18,9 @@ That being said as always I am not responsible for whatever happens with your ac
 
 ## Installation
 
-TODO: Describe the installation process
+1. Go to the releases tab.
+2. Download Setup.exe
+3. Run Setup.exe, this will install RyaRpc which automatically updates whenever a new release is available.
 
 ## Usage
 
