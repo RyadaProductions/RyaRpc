@@ -15,7 +15,7 @@ Discord rich pressence state for games that do not support it themself.
 
 An image says more than a thousand words:
 
-![example](https://i.imgur.com/yR1nsdB.png)
+![example](https://i.imgur.com/XxjCK0L.png)
 
 This image is of an earlier version currently it is way nicer but forgot to take a screenshot.
 
