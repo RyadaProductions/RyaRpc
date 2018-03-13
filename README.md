@@ -8,6 +8,11 @@ Discord rich pressence state for games that do not support it themself.
 - Discord does not allow us to upload images realtime so they have to be uploaded prematurely.
 - Discord does not allow us to change the name of the Game from the application.
 
+### What does it do?
+An image says more than a thousand words:
+[example](https://i.imgur.com/Pqn3M5o.png)
+This image is of an earlier version currently it is way nicer but forgot to take a screenshot.
+
 ### How does it work?
 RyaRpc works by listening to post requests from CSGO on port 3000 if the game is launched after starting RyaRpc. This is done by using the [GameStateIntegration](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration).
 When you launch RyaRpc it will add a config file to the CSGO directory that enables the game its post requests to `http://localhost:3000`
