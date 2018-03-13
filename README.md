@@ -55,6 +55,7 @@ That being said as always I am not responsible for whatever happens with your ac
 * [Serilog](https://github.com/serilog/serilog) - logging framework
 * [CSGSI](https://github.com/rakijah/CSGSI) - Gamestate listener and parser for csgo
 * [PropertyChangedAlanyzers](https://github.com/DotNetAnalyzers/PropertyChangedAnalyzers) - Analyzer that helps with INPC
+* [Squirrel.Windows](https://github.com/Squirrel/Squirrel.Windows) - Insall and update framework
 
 ## Authors
 
