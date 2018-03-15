@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using CSGSI;
 using CSGSI.Nodes;
 using RyaRpc.Models;
@@ -32,7 +33,7 @@ namespace RyaRpc.Games.Csgo
             // Start the gamestatelistener and if it fails to start close the application with code 1
             if (!_gamestateListener.Start())
             {
-                Environment.Exit(1);
+                Application.Current.Shutdown(1);
             }
 
             _presence = new RichPresence

@@ -23,6 +23,7 @@ namespace RyaRpc.ViewModels
         /// TitleBar user control, capable of moving and closing the window
         /// </summary>
         /// <param name="windowManagerConfig"></param>
+        /// <param name="trayIconViewModel"></param>
         public TitleBarViewModel(IWindowManagerConfig windowManagerConfig, TrayIconViewModel trayIconViewModel)
         {
             _windowManagerConfig = windowManagerConfig;
@@ -54,7 +55,7 @@ namespace RyaRpc.ViewModels
         public void CloseApplication()
         {
             RpcClient.Shutdown();
-            Environment.Exit(0);
+            Application.Current.Shutdown(0);
         }
     }
 }
