@@ -32,6 +32,7 @@ That being said as always I am not responsible for whatever happens with your ac
 1. Go to the releases tab.
 2. Download Setup.exe
 3. Run Setup.exe, this will install RyaRpc which automatically updates whenever a new release is available.
+If you installed the program prior to 1.0.3 please reinstall the whole program as the automatic updated doesn't work prior to 1.0.3
 
 ## Usage
 
